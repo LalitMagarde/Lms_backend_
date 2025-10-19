@@ -15,7 +15,7 @@ const courseProgressSchema = mongoose.Schema({
         type:Boolean
     },
     lectures:[
-        {type:String}
+        {type:Number}
     ]
 })
 

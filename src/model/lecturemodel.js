@@ -4,7 +4,7 @@ const lectureSchema = mongoose.Schema({
     title:{
         type:String
     },
-    videoUrl:{
+    video:{
         type:String
     },
     isFree:{

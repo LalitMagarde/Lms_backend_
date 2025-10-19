@@ -1,15 +1,31 @@
 const express = require('express');
 const lectureModel = require('../model/lecturemodel');
+const { authMiddleware } = require('../middleware/authmiddleware');
 const router = express.Router();
+const cloudinary  = require('cloudinary').v2;
+
 
 
 module.exports = router;
 
 
-router.post('/addlecture',async (req,res)=>{
+router.post('/addlecture',authMiddleware,async (req,res)=>{
     try{
+        const newlecture = JSON.parse(req.body.lecture); 
+        const file= req.files.file;
+        console.log(file);
+        const result = await cloudinary.uploader.upload(file.tempFilePath,
+            {
+               resource_type: "video",   
+               folder: "course_videos", 
+            }
+        );
+
+        newlecture.video=result.secure_url;
+
+        console.log(newlecture);
         
-        const lecture = await lectureModel.create(req.body);
+        const lecture = await lectureModel.create(newlecture);
         res.status(200).json(lecture._id);
     }
     catch(error){
@@ -19,7 +35,7 @@ router.post('/addlecture',async (req,res)=>{
 })
 
 
-router.get('/findlecture/:lectureid',async (req,res)=>{
+router.get('/findlecture/:lectureid',authMiddleware,async (req,res)=>{
     try{
        const {lectureid} = req.params;
 
@@ -34,7 +50,7 @@ router.get('/findlecture/:lectureid',async (req,res)=>{
     }
 })
 
-router.post('/updatelecture/:lectureid',async(req,res)=>{
+router.post('/updatelecture/:lectureid',authMiddleware,async(req,res)=>{
     try{
         
         const {_id}= req.body; 

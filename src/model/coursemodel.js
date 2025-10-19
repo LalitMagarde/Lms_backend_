@@ -23,7 +23,7 @@ const courseSchema = mongoose.Schema({
         {type:mongoose.Schema.Types.ObjectId,ref:"lecture"}
     ],
     
-    image:{
+    thumbnail:{
         type:String
     },
     status:{
