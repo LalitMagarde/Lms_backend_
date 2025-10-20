@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+dotenv.config({});
 
 function connect(){
 
-    mongoose.connect("mongodb://0.0.0.0/LMS(project)")
+    mongoose.connect(process.env.MONGODB_URL)
     .then(()=>{
         console.log('connected to db');
     })
