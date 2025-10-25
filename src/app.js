@@ -71,6 +71,7 @@ app.use('/receipt',receiptRoutes);
 
 app.get('/',(req,res)=>{
   console.log("server is running correctly");
+  res.send("server is running correctly");
 })
 
 
