@@ -69,6 +69,11 @@ app.use('/receipt',receiptRoutes);
 
 
 
+app.get('/',(req,res)=>{
+  console.log("server is running correctly");
+})
+
+
 
 
 app.post('/payment/create_order',async (req,res)=>{
