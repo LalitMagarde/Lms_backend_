@@ -61,10 +61,13 @@ router.post('/users', async (req, res) => {
 
     try {
         const { email, password } = req.body;
+        console.log(req.body);
 
         const currentUser = await userModel.findOne({
             email
         })
+
+        console.log(currentUser);
 
         if (currentUser) {
             const isMatch = await bcrypt.compare(password, currentUser.password);
