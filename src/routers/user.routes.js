@@ -67,7 +67,7 @@ router.post('/users', async (req, res) => {
             email
         })
 
-        console.log(currentUser);
+        // console.log(currentUser);
 
         if (currentUser) {
             const isMatch = await bcrypt.compare(password, currentUser.password);
@@ -88,9 +88,9 @@ router.post('/users', async (req, res) => {
                     // protocol
                     httpOnly: true,
                     // protocol is secure https
-                    secure: true,
-                    // allows the cookie to send accross diffrent domain
-                    sameSite: 'None',
+                    secure: false, // true fro production
+                    // allows the cookie to send accross diffrent domain 
+                    sameSite: 'lax',  // None for Production
                     // sets the expire of cookie
                     maxAge: 24 * 60 * 60 * 1000
                 });

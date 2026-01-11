@@ -83,7 +83,7 @@ app.post('/payment/create_order',async (req,res)=>{
       const {amount} = req.body;
 
          var options = {
-        amount, 
+        amount:amount*100, 
         currency: "INR",
         // receipt: "order_rcptid_11"
         };

@@ -21,9 +21,9 @@ module.exports = router;
 router.get('/allcourses',async(req,res)=>{
     try{
        
-        const {authorid} = req.params;
-
+        
         const courses = await courseModel.find();
+        // console.log(courses);
         res.status(200).json(courses);
        
     }
@@ -75,7 +75,7 @@ router.post('/course/updatecourse',authMiddleware,async (req,res)=>{
             const { _id }= req.body;
             const course = await courseModel.updateOne({_id},req.body);
 
-            console.log(course);   
+            // console.log(course);   
             res.status(200).json(course);
         }
     }
@@ -107,7 +107,7 @@ router.delete('/remove_course/:courseid',authMiddleware,async ( req,res)=>{
 
         const course =await courseModel.deleteOne({_id:courseid});
 
-        console.log(course);
+        // console.log(course);
 
         if(course.deletedCount==1){
             res.status(200).json({message:"courseDeleted"});
