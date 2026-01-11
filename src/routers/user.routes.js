@@ -88,9 +88,9 @@ router.post('/users', async (req, res) => {
                     // protocol
                     httpOnly: true,
                     // protocol is secure https
-                    secure: false, // true fro production
+                    secure: true, // false fro production
                     // allows the cookie to send accross diffrent domain 
-                    sameSite: 'lax',  // None for Production
+                    sameSite: 'None',  // lax for Production
                     // sets the expire of cookie
                     maxAge: 24 * 60 * 60 * 1000
                 });
